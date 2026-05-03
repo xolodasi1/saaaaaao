@@ -28,8 +28,9 @@ export const LoginScreen: React.FC = () => {
             } else {
                 setError(data.error || 'Failed to login');
             }
-        } catch (err) {
-            setError('Network error');
+        } catch (err: any) {
+            console.error("Login fetch error:", err);
+            setError(`Network error: ${err.message || String(err)}`);
         } finally {
             setLoading(false);
         }

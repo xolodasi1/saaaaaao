@@ -190,7 +190,15 @@ async function startServer() {
   // ----------------------------------------------------
   // WebSocket Server (Multiplayer Logic)
   // ----------------------------------------------------
-  const wss = new WebSocketServer({ server, path: '/game' });
+  const wss = new WebSocketServer({ noServer: true });
+
+  server.on('upgrade', (request, socket, head) => {
+    if (request.url === '/game') {
+      wss.handleUpgrade(request, socket, head, (ws) => {
+        wss.emit('connection', ws, request);
+      });
+    }
+  });
 
   wss.on('connection', (ws) => {
     let currentPlayerId: string | null = null;
