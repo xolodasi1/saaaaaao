@@ -1,0 +1,6 @@
+{
+  "name": "Sword Art Online Web Prototype",
+  "description": "A multiplayer 3D RPG prototype built with React Three Fiber, WebSockets, and Express.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
